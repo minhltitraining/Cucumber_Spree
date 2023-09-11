@@ -14,7 +14,8 @@ import io.cucumber.junit.CucumberOptions;
 		//features = {"Feature/OrangeHRM_AddUser.feature"}
 		//features = {"Feature/Spreecom_Login.feature"}
 		//features = {"Feature/Spreecom_Login_DataDrivenTesting_AllCondition.feature"}
-		features = {"Feature/WebOrder_Login.feature"}
+//		features = {"Feature/WebOrder_Login.feature"}
+		features = {"Feature/Spree_Login.feature"}
 		//features = {"Feature"}
 		,glue= "com.StepDefinition"
 		,dryRun=false
