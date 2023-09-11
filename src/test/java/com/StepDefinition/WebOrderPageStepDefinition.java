@@ -4,12 +4,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class WebOrderPageStepDefinition extends AbstractPageStepDefinition {
-	WebDriver driver = getDriver();
+	static WebDriver driver = getDriver();
 
 	@Given("User has Launched Chrome Browser")
 	public void user_has_launched_chrome_browser() {
@@ -193,4 +194,10 @@ public class WebOrderPageStepDefinition extends AbstractPageStepDefinition {
 		}
 		Thread.sleep(2000);
 	}
+	
+	@AfterAll
+	public static void afterAll() {
+	   driver.close();
+	}
+
 }
