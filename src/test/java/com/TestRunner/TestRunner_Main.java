@@ -15,7 +15,11 @@ import io.cucumber.junit.CucumberOptions;
 		//features = {"Feature/Spreecom_Login.feature"}
 		//features = {"Feature/Spreecom_Login_DataDrivenTesting_AllCondition.feature"}
 //		features = {"Feature/WebOrder_Login.feature"}
-		features = {"Feature/Spree_Login.feature"}
+//		features = {"Feature/DataTable_Example_DirectInSteps.feature"}
+//		features = {"Feature/DataTable_Example_SingleData.feature"}
+//		features = {"Feature/DataTable_Example_MultipleData.feature"}
+//		features = {"Feature/WebOrder_CreateOrder.feature"}
+		features = {"Feature/WebOrder_CreateMultipleOrder.feature"}
 		//features = {"Feature"}
 		,glue= "com.StepDefinition"
 		,dryRun=false

@@ -1,5 +1,6 @@
 package com.StepDefinition;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,97 +13,184 @@ public class WebOrderPageStepDefinition extends AbstractPageStepDefinition {
 
 	@Given("User has Launched Chrome Browser")
 	public void user_has_launched_chrome_browser() {
-		// Write code here that turns the phrase above into concrete actions
 		System.out.println("Chrome browser has launched");
 	}
 	
 	@Given("User has Launched Edge Browser")
 	public void user_has_launched_edge_browser() {
-	    // Write code here that turns the phrase above into concrete actions
 		System.out.println("Chrome browser has launched");
 	}
 
 	@When("User Navigate to Sign In Page of WebOrder Application")
 	public void user_navigate_to_sign_in_page_of_web_order_application() {
-		// Write code here that turns the phrase above into concrete actions
 		driver.get("http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx");
 	}
 
 	@When("User enters valid username and password in weborder login page")
 	public void user_enters_valid_username_and_password_in_weborder_login_page() {
-		// Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
 		driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test");
 	}
 
+	@When("User enters {string} and {string}")
+	public void user_enters_and(String uname, String upass) {
+		driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(uname);
+		driver.findElement(By.id("ctl00_MainContent_password")).sendKeys(upass);
+	}
+
 	@When("User Click on Login Button in from weborder login page")
 	public void user_click_on_login_button_in_from_weborder_login_page() {
-		// Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.id("ctl00_MainContent_login_button")).click();
 	}
 
 	@Then("User should be logged in and List of All Orders page should display")
 	public void user_should_be_logged_in_and_list_of_all_orders_page_should_display() {
-		// Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.xpath("//h2[normalize-space()='List of All Orders']")).isDisplayed();
 	}
 
 	@When("User click on Logout link from the home page")
 	public void user_click_on_logout_link_from_the_home_page() throws InterruptedException {
-	    // Write code here that turns the phrase above into concrete actions
 		Thread.sleep(2000);
 		driver.findElement(By.id("ctl00_logout")).click();
 	}
 	@Then("user should be taken back to Login page.")
 	public void user_should_be_taken_back_to_login_page() {
-	    // Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.id("ctl00_MainContent_login_button")).isDisplayed();
 		driver.close();
 	}
 
-
-	
-	@When("User Navigate to Sign In Page of Spree Application")
-	public void user_navigate_to_sign_in_page_of_spree_application() throws InterruptedException {
-	    // Write code here that turns the phrase above into concrete actions
-		driver.get("https://demo.spreecommerce.org/");
-		driver.findElement(By.id("account-button")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.linkText("LOGIN")).click();
-		
-		
-	}
-	@When("User enters valid username and password in Spree login page")
-	public void user_enters_valid_username_and_password_in_spree_login_page() throws InterruptedException {
-		Thread.sleep(2000);
-		driver.findElement(By.id("spree_user_email")).sendKeys("minh@spree.com");
-		driver.findElement(By.id("spree_user_password")).sendKeys("123456");
-	   
-	}
-	@When("User Click on Login Button in from Spree login page")
-	public void user_click_on_login_button_in_from_spree_login_page() {
-		driver.findElement(By.xpath("//input[@name='commit']")).click();
-	}
-	
-	@Then("User should be logged in and My Account page should display")
-	public void user_should_be_logged_in_and_my_account_page_should_display() {
-	    driver.findElement(By.xpath("//span[text()='Logged in successfully']")).isDisplayed();
+	@Given("^User Clicks on Order link in TestComplete$")
+	public void user_Clicks_on_Order_link_in_TestComplete() throws Throwable {
+		driver.findElement(By.linkText("Order")).click();
+//		Log_Message.debug("User Cliked on Order Link");
 	}
 
-
-	@When("User click on Logout link from the account page of Spree")
-	public void user_click_on_logout_link_from_the_account_page_of_spree() throws InterruptedException {
-		driver.findElement(By.id("account-button")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.linkText("LOGOUT")).click();
+	@Given("^User enters quantity, customer name, street, city, zip, card, card number, expire date in TestComplete$")
+	public void user_enters_quantity_customer_name_street_city_zip_card_card_number_expire_date_in_TestComplete() throws Throwable {
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys("2");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtName")).sendKeys("Tester");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox2")).sendKeys("Abc");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox3")).sendKeys("xyz");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys("1001");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_0")).click();
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys("1234");
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys("22/44");
+//		Log_Message.debug("User enter all the Details like Customer Name, Street, City, Zip and etc.");
 	}
-	@Then("user should be taken back to home page of Spree.")
-	public void user_should_be_taken_back_to_home_page_of_spree() {
-		driver.findElement(By.xpath("//span[text()='Signed out successfully.']")).isDisplayed();
+
+	@Given("^User Click on Process Button in TestComplete$")
+	public void user_Click_on_Process_Button_in_TestComplete() throws Throwable {
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
+	}
+
+	@Then("^User should see order success message in TestComplete$")
+	public void user_should_see_order_success_message_in_TestComplete() throws Throwable {
+		driver.findElement(By.xpath("//strong[normalize-space()='New order has been successfully added.']")).isDisplayed();
+//		Log_Message.debug("It should display -'order success message in TestComplete'...");
 		driver.close();
 	}
+	
+	@Then("User should get proper {string}")
+	public void user_should_get_proper(String ExpResult) {
+		if (ExpResult.equalsIgnoreCase("Invalid Login or Password.")) {
+			String ActResult = driver.findElement(By.id("ctl00_MainContent_status")).getText();
+			Assert.assertEquals(ActResult, ExpResult);
+		} else 
+		{
+			String ActResult = driver.findElement(By.linkText("Logout")).getText();
+			Assert.assertEquals(ActResult, ExpResult);
+			driver.findElement(By.linkText("Logout")).click();
+		}
+	}
+	
+	@Then("User enters {string}, {string}, {string}, {string}, {string}, {string}, {string} and {string} in create order page")
+	public void user_enters_and_in_create_order_page(String quantity, String name, String street, String city, String zipcode, String card, String cardNr, String expDate) {
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(quantity);
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtName")).sendKeys(name);
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox2")).sendKeys(street);
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox3")).sendKeys(city);
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys(zipcode);
+		if (!card.equals("")) {
+			driver.findElement(By.xpath("//input[@value='" + card + "']")).click();
+		}
 
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(cardNr);
+		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys(expDate);
+	}
+	@Then("User should should get proper {string} after click Process button")
+	public void user_should_should_get_proper_after_click_Process_button(String expResult) throws InterruptedException {
+		if (!expResult.equals("empty_quantity"))
+			driver.findElement(By.linkText("Process")).click();
 
+		switch (expResult) {
+		case "valid":
+			String expMessage = driver
+					.findElement(By.xpath("//strong[normalize-space()='New order has been successfully added.']"))
+					.getText();
+			String actMessage = "New order has been successfully added.";
+			Assert.assertEquals(expMessage, actMessage);
+			break;
+		case "empty_quantity":
+			driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity")).clear();
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//em[normalize-space()=\"Field 'Quantity' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "invalid_quantity":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()='Quantity must be greater than zero.']"))
+							.isDisplayed());
+			break;
+		case "empty_name":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()=\"Field 'Customer name' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "empty_street":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()=\"Field 'Street' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "empty_city":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()=\"Field 'City' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "empty_zip":
+			Assert.assertTrue(driver.findElement(By.xpath("//span[normalize-space()=\"Field 'Zip' cannot be empty.\"]"))
+					.isDisplayed());
+			break;
+		case "invalid_zip":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()='Invalid format. Only digits allowed.']"))
+							.isDisplayed());
+			break;
+		case "empty_card":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()='Select a card type.']")).isDisplayed());
+			break;
+		case "empty_cardnr":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()=\"Field 'Card Nr' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "invalid_cardnr":
+			Assert.assertTrue(driver.findElement(By.xpath(
+					"//span[normalize-space()='Invalid format. Only digits allowed.'] [@id=\"ctl00_MainContent_fmwOrder_RegularExpressionValidator2\"]"))
+					.isDisplayed());
+			break;
+		case "empty_expdate":
+			Assert.assertTrue(
+					driver.findElement(By.xpath("//span[normalize-space()=\"Field 'Expire date' cannot be empty.\"]"))
+							.isDisplayed());
+			break;
+		case "invalid_expdate":
+			Assert.assertTrue(driver
+					.findElement(By.xpath("//span[normalize-space()=\"Invalid format. Required format is mm/yy.\"]"))
+					.isDisplayed());
+			break;
 
-
+		}
+		Thread.sleep(2000);
+	}
 }
