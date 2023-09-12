@@ -26,14 +26,14 @@ Feature: To Test Web Order Create Order Functionality
       | Quantity | Name | Street          | City   | Zip   | Card | CardNr    | Date   | ExpResult        |
       |        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | valid            |
       |          | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | empty_quantity   |
-      #|        0 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | invalid_quantity |
-      #|        5 |      | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | empty_name       |
-      #|        5 | Minh |                 | Dallas | 75000 | Visa | 123456789 | 12/23  | empty_street     |
-      #|        5 | Minh | 123 Main Street |        | 75000 | Visa | 123456789 | 12/23  | empty_city       |
-      #|        5 | Minh | 123 Main Street | Dallas |       | Visa | 123456789 | 12/23  | empty_zip        |
-      #|        5 | Minh | 123 Main Street | Dallas | abcde | Visa | 123456789 | 12/23  | invalid_zip      |
-      #|        5 | Minh | 123 Main Street | Dallas | 75000 |      | 123456789 | 12/23  | empty_card       |
-      #|        5 | Minh | 123 Main Street | Dallas | 75000 | Visa |           | 12/23  | empty_cardnr     |
-      #|        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 |        | empty_expdate    |
-      #|        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | abcdef | invalid_date     |
-      #|        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12-23  | invalid_date     |
+      |        0 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | invalid_quantity |
+      |        5 |      | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12/23  | empty_name       |
+      |        5 | Minh |                 | Dallas | 75000 | Visa | 123456789 | 12/23  | empty_street     |
+      |        5 | Minh | 123 Main Street |        | 75000 | Visa | 123456789 | 12/23  | empty_city       |
+      |        5 | Minh | 123 Main Street | Dallas |       | Visa | 123456789 | 12/23  | empty_zip        |
+      |        5 | Minh | 123 Main Street | Dallas | abcde | Visa | 123456789 | 12/23  | invalid_zip      |
+      |        5 | Minh | 123 Main Street | Dallas | 75000 |      | 123456789 | 12/23  | empty_card       |
+      |        5 | Minh | 123 Main Street | Dallas | 75000 | Visa |           | 12/23  | empty_cardnr     |
+      |        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 |        | empty_expdate    |
+      |        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | abcdef | invalid_date     |
+      |        5 | Minh | 123 Main Street | Dallas | 75000 | Visa | 123456789 | 12-23  | invalid_date     |

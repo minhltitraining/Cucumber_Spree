@@ -19,7 +19,9 @@ import io.cucumber.junit.CucumberOptions;
 //		features = {"Feature/DataTable_Example_SingleData.feature"}
 //		features = {"Feature/DataTable_Example_MultipleData.feature"}
 //		features = {"Feature/WebOrder_CreateOrder.feature"}
-		features = {"Feature/WebOrder_CreateMultipleOrder.feature"}
+//		features = {"Feature/WebOrder_CreateMultipleOrder.feature"}
+		features = {"Feature/WebOrder_CreateMultipleOrder_FromExcel.feature"}
+		
 		//features = {"Feature"}
 		,glue= "com.StepDefinition"
 		,dryRun=false

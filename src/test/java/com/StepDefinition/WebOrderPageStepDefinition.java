@@ -1,8 +1,14 @@
 package com.StepDefinition;
 
+import java.io.IOException;
+import java.util.IllegalFormatException;
+
+import org.apache.poi.EncryptedDocumentException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import com.utilities.Excel_Parsing;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
@@ -118,6 +124,42 @@ public class WebOrderPageStepDefinition extends AbstractPageStepDefinition {
 		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(cardNr);
 		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys(expDate);
 	}
+	
+	@Then("User enters order data from {string} and {int} into Order page")
+	public void user_enters_order_data_from_and_into_order_page(String sheetName, Integer rowNumber) throws EncryptedDocumentException, IllegalFormatException, IOException {
+	    Excel_Parsing excel = new Excel_Parsing();
+	    Object[][] data = excel.getExcelData("OrderTable.xlsx", sheetName);
+	    String quantity = data[rowNumber][0].toString();
+	    String name = data[rowNumber][1].toString();
+	    String street = data[rowNumber][2].toString();
+	    String city = data[rowNumber][3].toString();
+	    String zipcode = data[rowNumber][4].toString();
+	    String card = data[rowNumber][5].toString();
+	    String cardNr = data[rowNumber][6].toString();
+	    String expDate = data[rowNumber][7].toString();
+//	    driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(quantity);
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtName")).sendKeys(name);
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox2")).sendKeys(street);
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox3")).sendKeys(city);
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys(zipcode);
+//		if (!card.equals("")) {
+//			driver.findElement(By.xpath("//input[@value='" + card + "']")).click();
+//		}
+//
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(cardNr);
+//		driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys(expDate);
+	    user_enters_and_in_create_order_page(quantity, name, street, city, zipcode, card, cardNr, expDate);
+	    
+	    
+	}
+	@Then("User should should get proper expect result from {string} and {int} after click Process button")
+	public void user_should_should_get_proper_expect_result_from_and_after_click_process_button(String sheetName, Integer rowNumber) throws EncryptedDocumentException, IllegalFormatException, IOException, InterruptedException {
+	    Excel_Parsing excel = new Excel_Parsing();
+	    Object[][] data = excel.getExcelData("OrderTable.xlsx", sheetName);
+	    String expResult = data[rowNumber][8].toString();
+	    user_should_should_get_proper_after_click_Process_button(expResult);
+	}
+	
 	@Then("User should should get proper {string} after click Process button")
 	public void user_should_should_get_proper_after_click_Process_button(String expResult) throws InterruptedException {
 		if (!expResult.equals("empty_quantity"))
